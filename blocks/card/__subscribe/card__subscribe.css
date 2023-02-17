@@ -1,0 +1,14 @@
+.card__subscribe{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 21px;
+    width: 246px;
+    height: 76px;
+}
+
+@media screen and (max-width: 500px){
+    .card__subscribe{
+        width: 242px;
+    }
+}
