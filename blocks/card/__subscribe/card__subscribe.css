@@ -4,7 +4,8 @@
     align-items: center;
     margin-left: 21px;
     width: 246px;
-    height: 76px;
+    margin-top: 20px;
+    padding-bottom: 26px;
 }
 
 @media screen and (max-width: 500px){
