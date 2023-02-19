@@ -4,9 +4,10 @@
     background: url(../../../images/close-icon.svg);
     height: 32px;
     border: none;
-    position: fixed;
-    margin-left: 400px;
-    margin-top: -32px;
+    position: absolute;
+    top: -12%;
+    right: -8%;
+    margin: auto;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -20,7 +21,6 @@
     .popup__button-close{
         width: 20px;
         height: 20px;
-        margin-top: -32px;
-        margin-left: 240px;
+        right: 0;
     }
 }

@@ -7,6 +7,8 @@ let profileName = document.querySelector('.profile__name');
 let profileDescription = document.querySelector('.profile__description');
 
 formElement.addEventListener('click', function handleFormSubmit () {
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileDescription.textContent;
     let editProfile = document.querySelector('.popup');
     editProfile.classList.add('popup_opened');
 });
@@ -15,9 +17,6 @@ closeButton.addEventListener('click', function handleFormClose () {
     let closeProfile = document.querySelector('.popup');
     closeProfile.classList.remove('popup_opened');
 });
-
-nameInput.value = profileName.textContent;
-jobInput.value = profileDescription.textContent;
 
 formButton.addEventListener('submit', function handleFormSave (evt) {
     evt.preventDefault();
