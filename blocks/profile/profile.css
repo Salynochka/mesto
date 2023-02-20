@@ -3,7 +3,7 @@
     margin-top: 40px;
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 600px){
     .profile{
     flex-direction: column;
     }
