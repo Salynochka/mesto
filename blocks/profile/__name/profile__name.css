@@ -5,6 +5,7 @@
     font-size: 42px;
     line-height: 48px;
     color: #FFFFFF;
+    max-width: 300px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -15,5 +16,6 @@
     text-align: center;
     font-size: 27px;
     line-height: 33px;
+    max-width: 260px;
     }
 }
