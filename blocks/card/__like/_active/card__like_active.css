@@ -1,3 +1,7 @@
-.card__like_active:hover{
-    background-color: black;
+.card__like_active{
+    background-image: url(../../../images/like.svg);
 }
+
+/*.card__like_active:hover{
+    background-color: black;
+}*/
