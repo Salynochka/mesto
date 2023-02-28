@@ -1,34 +1,33 @@
 const formElement = document.querySelector('.profile__changes');
 const closeButton = document.querySelector('.popup__button-close');
 const formButton = document.querySelector('.popup__form');
-/*const nameInput = document.querySelector('.popup__item_type_name');
+const nameInput = document.querySelector('.popup__item_type_name');
 const jobInput = document.querySelector('.popup__item_type_job');
 const profileName = document.querySelector('.profile__name');
-const profileDescription = document.querySelector('.profile__description');*/
+const profileDescription = document.querySelector('.profile__description');
 
 const addElement = document.querySelector('.profile__button-add');
 const formEditButton = document.querySelector('.popup__form-edit');
-/*const cardTitle = document.querySelector('.card__title');
+const cardTitle = document.querySelector('.card__title');
 const cardPhoto = document.querySelector('.card__photo');
 const nameCardInput = document.querySelector('.popup__item_type_name-card');
-const linkInput = document.querySelector('.popup__item_type_link');*/
+const linkInput = document.querySelector('.popup__item_type_link');
 
 const likeButton = document.querySelector('.card__like');
 
-
-/*formElement.addEventListener('click', function handleFormSubmit () {
+/*formElement.addEventListener('click', function () {
     nameInput.value = profileName.textContent;
     jobInput.value = profileDescription.textContent;
     const editProfile = document.querySelector('.popup');
     editProfile.classList.add('popup_opened');
 });
 
-closeButton.addEventListener('click', function handleFormClose () {
+closeButton.addEventListener('click', function () {
     const closeProfile = document.querySelector('.popup');
     closeProfile.classList.remove('popup_opened');
 });
 
-formButton.addEventListener('submit', function handleFormSave (evt) {
+formButton.addEventListener('submit', function (evt) {
     evt.preventDefault();
     profileName.textContent=nameInput.value;
     profileDescription.textContent=jobInput.value;
@@ -36,14 +35,14 @@ formButton.addEventListener('submit', function handleFormSave (evt) {
     saveProfile.classList.remove('popup_opened');
 });
 
-addElement.addEventListener('click', function editFormSubmit () {
+addElement.addEventListener('click', function () {
     nameCardInput.value = cardTitle.textContent;
     linkInput.value = cardPhoto.textContent;
     const addCard = document.querySelector('.popup');
     addCard.classList.add('popup_opened');
 });
 
-formEditButton.addEventListener('submit', function editFormSave (evt) {
+formEditButton.addEventListener('submit', function (evt) {
     evt.preventDefault();
     cardTitle.value = nameCardInput.textContent;
     cardPhoto.value = linkInput.textContent;
@@ -51,11 +50,12 @@ formEditButton.addEventListener('submit', function editFormSave (evt) {
     createCard.classList.add('popup_opened');
 });
 
-/*likeButton.addEventListener('click', function () {
+likeButton.addEventListener('click', function () {
   likeActive.target.classList.toggle('cars__like_active');
   const likeActive = document.querySelector('.card__like_active');
   likeActive.setAttribute('disabled', false)
   return likeActive;
+  toggleLike(likeButton);
 });*/
 
 const initialCards = [
@@ -96,8 +96,16 @@ const initialCards = [
     const cardPhoto = cardTemplate.querySelector('.card__photo');
     cardPhoto.setAttribute('src', card.link);
     cardPhoto.setAttribute('alt', card.name);
-    cards.append(cardTemplate)
+    const cardDeleteButton = cardTemplate.querySelector('.card__delete-button');
+    cardDeleteButton.addEventListener('click', handleDeleteButton);
+    cards.append(cardTemplate);
   })
+
+  function handleDeleteButton(event){
+    const deleteButton = event.target; 
+    const card = deleteButton.closest('.card');
+    card.remove()
+  };
 
   const popupCards = [
     {
@@ -118,6 +126,7 @@ const initialCards = [
     popupHeading.textContent = popupCard.heading;
     const popupButton = popupTemplate.querySelector('.popup__button-save')
     popupButton.setAttribute('button', popupCard.button);
-    popupCards.append(popupTemplate);
+    popup.append(popupTemplate);
+    
   })
   

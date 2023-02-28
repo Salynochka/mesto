@@ -1,4 +1,4 @@
-.card__basket{
+.card__delete-button{
     border: none;
     background-color: transparent;
     background-image: url(../../../images/basket.svg);
@@ -9,7 +9,7 @@
     height: 19px;
 }
 
-.card__basket:hover{
+.card__delete-button:hover{
     cursor: pointer;
     opacity: 0.6;
 }
