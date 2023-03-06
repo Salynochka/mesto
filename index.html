@@ -40,33 +40,38 @@
       </template>
     </section>
     <section class="popup">
-      <template class="popup__template">
-        <div class="popup__container">
-          <button class="popup__button-close" type="button"></button>
-          <h2 class="popup__heading">Редактировать профиль</h2>
-          <form class="popup__form" name="information">
-            <fieldset class="popup__input">
-              <input type="text" class="popup__item popup__item_type_name" name="name">
-              <input type="text" class="popup__item popup__item_type_job" name="job">
-            </fieldset>
-            <button class="popup__button-save" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </template>
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__form" name="information">
+          <fieldset class="popup__input">
+            <input type="text" class="popup__item popup__item_type_name" name="name">
+            <input type="text" class="popup__item popup__item_type_job" name="job">
+          </fieldset>
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+      </div>
     </section>
-    <!--<section class="popup-edit">
+    <section class="popup popup-add">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
         <h2 class="popup__heading">Новое место</h2>
-        <form class="popup__form-edit" name="information">
+        <form class="popup-add__form" name="information">
           <fieldset class="popup__input">
-            <input type="text" class="popup__item popup__item_type_name-card" name="name-card">
-            <input type="url" class="popup__item popup__item_type_link" name="link">
+            <input type="text" class="popup__item popup__item_type_name-card" name="name-card" placeholder="Название">
+            <input type="url" class="popup__item popup__item_type_link" placeholder="Ссылка на картинку" name="link">
           </fieldset>
-          <button class="popup__button-create" type="submit">Создать</button>
+          <button class="popup-add__button-create" type="submit">Создать</button>
         </form>
       </div>
-    </section>-->
+    </section>
+    <section class="popup popup-increase">
+      <div class="popup-increase__container">
+        <button class="popup__button-close" type="button"></button>
+        <img class="popup-increase__photo">
+        <h2 class="popup-increase__heading"></h2>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <p class="footer__sign">&copy; 2022 Mesto Russia</p>
