@@ -1,4 +1,4 @@
-.popup-increase_active{
+.popup-increase_opened{
     visibility: visible;
     opacity: 1;
     transition: visibility 1s, opacity 0.5s linear;
