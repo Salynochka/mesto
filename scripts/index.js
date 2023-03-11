@@ -109,7 +109,11 @@ const initialCards = [
       alt: nameCardInput.value,
       link: linkInput.value
     }
-    const cardTemplate = document.querySelector('.card__template').content.cloneNode(true);
+  const cardTemplate = document.querySelector('.card__template').content.cloneNode(true);
+  const cardDeleteButton = cardTemplate.querySelector('.card__delete-button');
+    cardDeleteButton.addEventListener('click', handleDeleteButton);
+  const likeButton = cardTemplate.querySelector('.card__like');
+    likeButton.addEventListener('click', handleActiveLike);
     createCards(newCard);
     cards.prepend(cardTemplate);
     closePopup(addPopup)
@@ -153,17 +157,15 @@ const initialCards = [
 
   const increaseElement = document.querySelector('.card__photo');
   increaseElement.addEventListener('click', handleIncreasedPhoto)
-  
-  function handleIncreasePopup(){openPopup(increasePopup)}
-  
 
   function handleIncreasedPhoto(card){
     const increaseCard = card.target;
     const popupIncreasePhoto = increaseCard.querySelector('.popup-increase__photo');
     handleIncreasePopup;
-    popupIncreasePhoto.src = card.src;
-
+    popupIncreasePhoto.src = card.link;
     const popupIncreaseHeding = increaseCard.querySelector('.popup-increase__heading');
     popupIncreaseHeding.textContent = card.value;
     handleCloseButton;
   }
+
+  function handleIncreasePopup(){openPopup(increasePopup)}
