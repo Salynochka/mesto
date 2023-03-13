@@ -1,4 +1,3 @@
-
 const formButton = document.querySelector('.popup__form');
 
 const nameInput = document.querySelector('.popup__item_type_name');
@@ -10,26 +9,24 @@ const addFormButton = document.querySelector('.popup-add__form')
 
 const nameCardInput = document.querySelector('.popup__item_type_name-card');
 const linkInput = document.querySelector('.popup__item_type_link');
-const cardPhoto = document.querySelector('.card__photo');
-const cardTitle = document.querySelector('.card__title');
+
 
 //Открытие попапов через кнопки изменения и добавления
-
 const editPopup = document.querySelector('.popup-edit');
 const addPopup = document.querySelector('.popup-add');
 
-const formElement = document.querySelector('.profile__changes');
-formElement.addEventListener('click', handleEditPopup)
+  const formElement = document.querySelector('.profile__changes');
+  formElement.addEventListener('click', handleEditPopup)
 
-const addElement = document.querySelector('.profile__button-add');
-addElement.addEventListener('click', handleAddPopup)
+  const addElement = document.querySelector('.profile__button-add');
+  addElement.addEventListener('click', handleAddPopup)
 
-  function handleEditPopup(){openPopup(editPopup)}
-  function handleAddPopup(){openPopup(addPopup)}
+    function handleEditPopup(){openPopup(editPopup)}
+    function handleAddPopup(){openPopup(addPopup)}
 
-    function openPopup(popup) {
-      popup.classList.add('popup_opened');
-    }
+      function openPopup(popup) {
+        popup.classList.add('popup_opened');
+      }
 
 //Закрытие попапов на крестик
 const closeButton = document.querySelectorAll('.popup__button-close')
@@ -96,7 +93,6 @@ const initialCards = [
   const cards = document.querySelector('.cards');
 
   //Создание новых карточек
-
   addFormButton.addEventListener('submit', handleAddCard)
 
   function handleAddCard(evt){
@@ -105,24 +101,17 @@ const initialCards = [
     const nameCardInput = addFormButton.querySelector('.popup__item_type_name-card').value;
     const linkInput = addFormButton.querySelector('.popup__item_type_link').value;
     const newCard = {
-      name: nameCardInput.value,
-      alt: nameCardInput.value,
-      link: linkInput.value
+      name: nameCardInput,
+      alt: nameCardInput,
+      link: linkInput
     }
-  const cardTemplate = document.querySelector('.card__template').content.cloneNode(true);
-  const cardDeleteButton = cardTemplate.querySelector('.card__delete-button');
-    cardDeleteButton.addEventListener('click', handleDeleteButton);
-  const likeButton = cardTemplate.querySelector('.card__like');
-    likeButton.addEventListener('click', handleActiveLike);
     createCards(newCard);
-    cards.prepend(cardTemplate);
     closePopup(addPopup)
     addFormButton.reset();
     return newCard;
   }
 
-  //Настройка появления карточек из JavaScript
-  
+  //Появление карточек из JavaScript
   function createCards(card){
     const cardTemplate = document.querySelector('.card__template').content.cloneNode(true);
     const cardTitle = cardTemplate.querySelector('.card__title');
@@ -134,8 +123,8 @@ const initialCards = [
       cardDeleteButton.addEventListener('click', handleDeleteButton);
     const likeButton = cardTemplate.querySelector('.card__like');
       likeButton.addEventListener('click', handleActiveLike);
-      cardPhoto.addEventListener('click', handleIncreasedPhoto);
-      cards.append(cardTemplate);
+      cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.name, card.link));
+      cards.prepend(cardTemplate);
   }
 
   initialCards.forEach(createCards)
@@ -154,18 +143,15 @@ const initialCards = [
   
   //Увеличение фото
   const increasePopup = document.querySelector('.popup-increase');
+  const cardPhoto = document.querySelector('.card__photo');
+  const cardTitle = document.querySelector('.card__title');
 
-  const increaseElement = document.querySelector('.card__photo');
-  increaseElement.addEventListener('click', handleIncreasedPhoto)
+  const popupIncreasePhoto = increasePopup.querySelector('.popup-increase__photo');
+  const popupIncreaseHeading = increasePopup.querySelector('.popup-increase__heading');
 
-  function handleIncreasedPhoto(card){
-    const increaseCard = card.target;
-    const popupIncreasePhoto = increaseCard.querySelector('.popup-increase__photo');
-    handleIncreasePopup;
-    popupIncreasePhoto.src = card.link;
-    const popupIncreaseHeding = increaseCard.querySelector('.popup-increase__heading');
-    popupIncreaseHeding.textContent = card.value;
-    handleCloseButton;
+  function handleIncreasePhoto(name, link){
+    popupIncreasePhoto.src = link;
+    popupIncreasePhoto.alt = name;
+    popupIncreaseHeading.textContent = name;
+    increasePopup.classList.add('popup-increase_opened');
   }
-
-  function handleIncreasePopup(){openPopup(increasePopup)}
