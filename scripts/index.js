@@ -12,6 +12,7 @@ const linkInput = document.querySelector('.popup__item_type_link');
 
 
 //Открытие попапов через кнопки изменения и добавления
+
 const editPopup = document.querySelector('.popup-edit');
 const addPopup = document.querySelector('.popup-add');
 
@@ -93,6 +94,7 @@ const initialCards = [
   const cards = document.querySelector('.cards');
 
   //Создание новых карточек
+
   addFormButton.addEventListener('submit', handleAddCard)
 
   function handleAddCard(evt){
@@ -112,6 +114,7 @@ const initialCards = [
   }
 
   //Появление карточек из JavaScript
+  
   function createCards(card){
     const cardTemplate = document.querySelector('.card__template').content.cloneNode(true);
     const cardTitle = cardTemplate.querySelector('.card__title');
@@ -123,7 +126,7 @@ const initialCards = [
       cardDeleteButton.addEventListener('click', handleDeleteButton);
     const likeButton = cardTemplate.querySelector('.card__like');
       likeButton.addEventListener('click', handleActiveLike);
-      cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.name, card.link));
+      cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.link, card.name));
       cards.prepend(cardTemplate);
   }
 
@@ -142,6 +145,7 @@ const initialCards = [
   };
   
   //Увеличение фото
+
   const increasePopup = document.querySelector('.popup-increase');
   const cardPhoto = document.querySelector('.card__photo');
   const cardTitle = document.querySelector('.card__title');
@@ -149,9 +153,36 @@ const initialCards = [
   const popupIncreasePhoto = increasePopup.querySelector('.popup-increase__photo');
   const popupIncreaseHeading = increasePopup.querySelector('.popup-increase__heading');
 
-  function handleIncreasePhoto(name, link){
+  function handleIncreasePhoto(link, name){
     popupIncreasePhoto.src = link;
     popupIncreasePhoto.alt = name;
-    popupIncreaseHeading.textContent = name;
+    popupIncreaseHeading.textContent = cardTitle.textContent;
     increasePopup.classList.add('popup-increase_opened');
   }
+
+ /* function handleIncreasePhoto(){
+    popupIncreasePhoto.src = cardPhoto.src;
+    popupIncreasePhoto.alt = cardTitle.textContent;
+    popupIncreaseHeading.textContent = cardTitle.textContent;
+    increasePopup.classList.add('popup-increase_opened');
+  }*/
+
+
+    /*const increaseElement = document.querySelector('.card__photo');
+  increaseElement.addEventListener('click', handleIncreasePhoto)
+
+  const addElement = document.querySelector('.profile__button-add');
+  addElement.addEventListener('click', handleAddPopup)
+  
+    function handleIncreasePopup(){openPopup(increaseElement)}
+
+  function openIncreasePopup() {
+    increasePopup.classList.add('popup-increase_opened');
+  }*/
+
+
+  /*handleIncreasePopup;
+    popupIncreasePhoto.src = card.link;
+    const popupIncreaseHeding = increaseCard.querySelector('.popup-increase__heading');
+    popupIncreaseHeding.textContent = card.value;
+    handleCloseButton;*/
