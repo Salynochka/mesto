@@ -1,7 +1,4 @@
 .popup-increase__container{
-    position: relative;
-    box-sizing: border-box;
-    background-color: white;
-    padding-left: 36px;
     margin: auto;
+    position: relative;
 }

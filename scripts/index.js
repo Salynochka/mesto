@@ -10,12 +10,11 @@ const addFormButton = document.querySelector('.popup-add__form')
 const nameCardInput = document.querySelector('.popup__item_type_name-card');
 const linkInput = document.querySelector('.popup__item_type_link');
 
-
-//Открытие попапов через кнопки изменения и добавления
-
 const editPopup = document.querySelector('.popup-edit');
 const addPopup = document.querySelector('.popup-add');
+const increasePopup = document.querySelector('.popup-increase');
 
+//Открытие попапов через кнопки изменения и добавления
   const formElement = document.querySelector('.profile__changes');
   formElement.addEventListener('click', handleEditPopup)
 
@@ -66,8 +65,8 @@ addFormButton.addEventListener('submit', function (evt) {
 
 const initialCards = [
     {
-      name: 'Озеро Брайес',
-      link: 'images/braies_lake.jpg'
+      name: 'Эверест',
+      link: 'images/everest.jpg'
     },
     {
       name: 'Национальный парк Секвойа',
@@ -82,8 +81,8 @@ const initialCards = [
       link: 'images/antelope_canyon.jpg'
     },
     {
-      name: 'Эверест',
-      link: 'images/everest.jpg'
+      name: 'Озеро Брайес',
+      link: 'images/braies_lake.jpg'
     },
     {
       name: 'Мачу Пикчу',
@@ -145,8 +144,6 @@ const initialCards = [
   };
   
   //Увеличение фото
-
-  const increasePopup = document.querySelector('.popup-increase');
   const cardPhoto = document.querySelector('.card__photo');
   const cardTitle = document.querySelector('.card__title');
 
@@ -156,33 +153,6 @@ const initialCards = [
   function handleIncreasePhoto(link, name){
     popupIncreasePhoto.src = link;
     popupIncreasePhoto.alt = name;
-    popupIncreaseHeading.textContent = cardTitle.textContent;
-    increasePopup.classList.add('popup-increase_opened');
+    popupIncreaseHeading.textContent = name;
+    openPopup(increasePopup)
   }
-
- /* function handleIncreasePhoto(){
-    popupIncreasePhoto.src = cardPhoto.src;
-    popupIncreasePhoto.alt = cardTitle.textContent;
-    popupIncreaseHeading.textContent = cardTitle.textContent;
-    increasePopup.classList.add('popup-increase_opened');
-  }*/
-
-
-    /*const increaseElement = document.querySelector('.card__photo');
-  increaseElement.addEventListener('click', handleIncreasePhoto)
-
-  const addElement = document.querySelector('.profile__button-add');
-  addElement.addEventListener('click', handleAddPopup)
-  
-    function handleIncreasePopup(){openPopup(increaseElement)}
-
-  function openIncreasePopup() {
-    increasePopup.classList.add('popup-increase_opened');
-  }*/
-
-
-  /*handleIncreasePopup;
-    popupIncreasePhoto.src = card.link;
-    const popupIncreaseHeding = increaseCard.querySelector('.popup-increase__heading');
-    popupIncreaseHeding.textContent = card.value;
-    handleCloseButton;*/
