@@ -1,11 +1,10 @@
 const formEditProfile = document.querySelector('.popup__form');
+const formAddCard = document.querySelector('.popup-add__form')
 
 const nameInput = document.querySelector('.popup__item_type_name');
 const jobInput = document.querySelector('.popup__item_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
-
-const formAddCard = document.querySelector('.popup-add__form')
 
 const nameCardInput = document.querySelector('.popup__item_type_name-card');
 const linkInput = document.querySelector('.popup__item_type_link');
@@ -35,19 +34,34 @@ function handleEditPopup(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 }
-function handleAddPopup(){openPopup(popupAddCard)};
+function handleAddPopup(){
+  openPopup(popupAddCard)
+};
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc)
 }
 
 //Закрытие попапов на крестик
+
+const popupList = document.querySelectorAll('.popup')
+
+popupList.forEach(function(popup){
+  popup.addEventListener('click', (evt) => {
+    if(evt.target === popupList) {
+      popupList.classList.remove('popup_opened');
+    }
+  })
+})
+
 buttonCloseList.forEach(function(button){
   button.addEventListener('click', handleCloseButton);
 })
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupEsc)
 };
 
 function handleCloseButton(event){
@@ -62,97 +76,77 @@ formEditProfile.addEventListener('submit', function (evt) {
   closePopup(popupEditProfile)
 });
 
-const initialCards = [
-    {
-      name: 'Эверест',
-      link: 'images/everest.jpg'
-    },
-    {
-      name: 'Национальный парк Секвойа',
-      link: 'images/sequoia.jpg'
-    },
-    {
-      name: 'Красное море',
-      link: 'images/red_sea.jpg'
-    },
-    {
-      name: 'Антилопа Каньон',
-      link: 'images/antelope_canyon.jpg'
-    },
-    {
-      name: 'Озеро Брайес',
-      link: 'images/braies_lake.jpg'
-    },
-    {
-      name: 'Мачу Пикчу',
-      link: 'images/machu_picchu.jpg'
-    }
-  ]; 
+//Создание новых карточек
+formAddCard.addEventListener('submit', handleAddCard)
 
-  //Создание новых карточек
-  formAddCard.addEventListener('submit', handleAddCard)
-
-  function handleAddCard(evt){
-    evt.preventDefault()
-    const formAddCard = evt.target;
-    const newCard = {
-      name: nameCardInput.value,
-      alt: nameCardInput.value,
-      link: linkInput.value
-    }
-    renderCard(newCard);
-    closePopup(popupAddCard);
-    formAddCard.reset();
-
-    return newCard;
+function handleAddCard(evt){
+  evt.preventDefault()
+  const formAddCard = evt.target;
+  const newCard = {
+    name: nameCardInput.value,
+    alt: nameCardInput.value,
+    link: linkInput.value
   }
+  renderCard(newCard);
+  closePopup(popupAddCard);
+  formAddCard.reset();
 
-  const cardsContainer = document.querySelector('.cards');
+  return newCard;
+}
 
-  //Появление карточек из JavaScript
-  const cardForTemplate = document.querySelector('.card__template').content;
+const cardsContainer = document.querySelector('.cards');
 
-  function createCard(card){
-    const cardTemplate = cardForTemplate.cloneNode(true);
-    const cardTitle = cardTemplate.querySelector('.card__title');
-    const cardPhoto = cardTemplate.querySelector('.card__photo');
-    const cardDeleteButton = cardTemplate.querySelector('.card__delete-button');
-    const likeButton = cardTemplate.querySelector('.card__like');
+//Появление карточек из JavaScript
+const cardForTemplate = document.querySelector('.card__template').content;
+
+function createCard(card){
+  const cardTemplate = cardForTemplate.cloneNode(true);
+  const cardTitle = cardTemplate.querySelector('.card__title');
+  const cardPhoto = cardTemplate.querySelector('.card__photo');
+  const cardDeleteButton = cardTemplate.querySelector('.card__delete-button');
+  const likeButton = cardTemplate.querySelector('.card__like');
       
-    cardTitle.textContent = card.name;
-    cardPhoto.setAttribute('src', card.link);
-    cardPhoto.setAttribute('alt', card.name);
+  cardTitle.textContent = card.name;
+  cardPhoto.setAttribute('src', card.link);
+  cardPhoto.setAttribute('alt', card.name);
     
-    cardDeleteButton.addEventListener('click', handleDeleteButton);
-    likeButton.addEventListener('click', handleActiveLike);
-    cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.link, card.name));
+  cardDeleteButton.addEventListener('click', handleDeleteButton);
+  likeButton.addEventListener('click', handleActiveLike);
+  cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.link, card.name));
       
-    return cardTemplate;
-  }
+  return cardTemplate;
+}
 
- function renderCard(card){
-    const cardTemplate = createCard(card);
-    cardsContainer.prepend(cardTemplate);
-  }
+function renderCard(card){
+  const cardTemplate = createCard(card);
+  cardsContainer.prepend(cardTemplate);
+}
 
-  initialCards.forEach(renderCard)
+initialCards.forEach(renderCard)
 
 
-  function handleDeleteButton(event){
-    const buttonDelete = event.target; 
-    const card = buttonDelete.closest('.card');
-    card.remove();
-  };
+function handleDeleteButton(event){
+  const buttonDelete = event.target; 
+  const card = buttonDelete.closest('.card');
+  card.remove();
+};
 
-  function handleActiveLike(event){
-    const likeButton = event.target;
-    likeButton.classList.toggle('card__like_active');
-  };
+function handleActiveLike(event){
+  const likeButton = event.target;
+  likeButton.classList.toggle('card__like_active');
+};
   
-  //Увеличение фото
-  function handleIncreasePhoto(link, name){
-    popupIncreasePhoto.src = link;
-    popupIncreasePhoto.alt = name;
-    popupIncreaseHeading.textContent = name;
-    openPopup(popupWithPhoto)
+//Увеличение фото
+function handleIncreasePhoto(link, name){
+  popupIncreasePhoto.src = link;
+  popupIncreasePhoto.alt = name;
+  popupIncreaseHeading.textContent = name;
+  openPopup(popupWithPhoto)
+}
+
+function closePopupEsc(e) {
+  if (e.key === 'Escape') {
+    const popupOpen = document.querySelector('.popup_opened')
+    closePopup(popupOpen);
   }
+}
