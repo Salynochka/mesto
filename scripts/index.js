@@ -45,15 +45,14 @@ function openPopup(popup) {
 
 //Закрытие попапов на крестик
 
-const popupList = document.querySelectorAll('.popup')
+const popupList = document.querySelector('.popup')
 
-popupList.forEach(function(popup){
-  popup.addEventListener('click', (evt) => {
+document.addEventListener('click', (evt) => {
     if(evt.target === popupList) {
+      console.log(evt.target)
       popupList.classList.remove('popup_opened');
     }
   })
-})
 
 buttonCloseList.forEach(function(button){
   button.addEventListener('click', handleCloseButton);
