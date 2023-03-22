@@ -20,8 +20,8 @@ const enableButton = (buttonSubmit, inactiveButtonClass) => {
   buttonSubmit.disabled = false;
 }
 
-const checkInputValidity = (input, errorTemplate, errorActiveClass) => {
-  const errorText = document.querySelector(`${errorTemplate}${input.name}`)
+const checkInputValidity = (input, inputErrorTemplate, errorActiveClass) => {
+  const errorText = document.querySelector(`${inputErrorTemplate}${input.name}`)
   if (!input.validity.valid) {
     showError(errorText, input.validationMessage, errorActiveClass);
     input.classList.add('popup__item_error');
@@ -43,7 +43,7 @@ const  toggleButtonState = (buttonSubmit, inactiveButtonClass, inputList) => {
   }
 }
 
-const setEventListeners = (formList, inputList, errorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass) => {
+const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass) => {
   formList.addEventListener('submit', (evt) =>{
     evt.preventDefault();
   })
@@ -52,7 +52,7 @@ const setEventListeners = (formList, inputList, errorTemplate, errorActiveClass,
 
   inputList.forEach((input) => {
     input.addEventListener('input', (e) =>{
-      checkInputValidity(input, errorTemplate, errorActiveClass)
+      checkInputValidity(input, inputErrorTemplate, errorActiveClass)
       toggleButtonState(buttonSubmit, inactiveButtonClass, inputList);
     })
   })
