@@ -62,7 +62,7 @@ const enableValidation = (config) => {
   const formList = form.querySelectorAll(config.inputSelector)
   const buttonSaveSubmit = form.querySelector(config.submitButtonSelector)
 
-  setEventListeners(form, formList, config.inputErrorTemplate, config.errorActiveClass, buttonSaveSubmit, config.inactiveSaveButtonClass)
+  setEventListeners(form, formList, config.inputErrorTemplate, config.errorActiveClass, buttonSaveSubmit, config.inactiveButtonClass)
 
  /* const formAdd = document.querySelector(config.formAddSelector)
   const formAddList = formAdd.querySelectorAll(config.inputSelector)
@@ -79,6 +79,6 @@ enableValidation({
   errorActiveClass: 'popup__form-error',
   submitButtonSelector: '.popup__button',
   //submitCreateButtonSelector: '.popup-add__button-create',
-  inactiveSaveButtonClass: 'popup__button-save_disabled',
-  inactiveCreateButtonClass: 'popup-add__button-create_disabled'
+  inactiveButtonClass: 'popup__button_disabled',
+  //inactiveCreateButtonClass: 'popup-add__button-create_disabled'
 });
