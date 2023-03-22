@@ -62,13 +62,13 @@ const enableValidation = (config) => {
   const formEditList = formEdit.querySelectorAll(config.inputSelector)
   const buttonSaveSubmit = formEdit.querySelector(config.submitSaveButtonSelector)
 
-  setEventListeners(formEdit, formEditList, config.inputErrorEditTemplate, config.errorActiveClass, buttonSaveSubmit, config.inactiveSaveButtonClass)
+  setEventListeners(formEdit, formEditList, config.inputErrorEditTemplate, config.errorEditActiveClass, buttonSaveSubmit, config.inactiveSaveButtonClass)
 
   const formAdd = document.querySelector(config.formAddSelector)
   const formAddList = formAdd.querySelectorAll(config.inputSelector)
   const buttonCreateSubmit = formAdd.querySelector(config.submitCreateButtonSelector)
   
-  setEventListeners(formAdd, formAddList, config.inputErrorAddTemplate, config.errorActiveClass, buttonCreateSubmit, config.inactiveCreateButtonClass)
+  setEventListeners(formAdd, formAddList, config.inputErrorAddTemplate, config.errorAddActiveClass, buttonCreateSubmit, config.inactiveCreateButtonClass)
 }
 
 
@@ -78,7 +78,8 @@ enableValidation({
   inputSelector: '.popup__item',
   inputErrorEditTemplate: '.popup__form-error_type_',
   inputErrorAddTemplate: '.popup-add__form-error_type_',
-  errorActiveClass: 'popup__form-error',
+  errorEditActiveClass: 'popup__form-error',
+  errorAddActiveClass: 'popup-add__form-error',
   submitSaveButtonSelector: '.popup__button-save',
   submitCreateButtonSelector: '.popup-add__button-create',
   inactiveSaveButtonClass: 'popup__button-save_disabled',

@@ -44,6 +44,7 @@
 
 @import url(../blocks/popup-add/popup-add.css);
 @import url(../blocks/popup-add/__form/popup-add__form.css);
+@import url(../blocks/popup-add/__form-error/popup-add__form-error.css);
 @import url(../blocks/popup-add/__button-create/popup-add__button-create.css);
 @import url(../blocks/popup-add/__button-create/_disabled/popup-add__button-create_disabled.css);
 
