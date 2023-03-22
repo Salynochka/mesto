@@ -1,3 +1,4 @@
+const popupList = document.querySelectorAll('.popup')
 const formEditProfile = document.querySelector('.popup__form');
 const formAddCard = document.querySelector('.popup-add__form')
 
@@ -43,16 +44,18 @@ function openPopup(popup) {
   document.addEventListener('keydown', closePopupEsc)
 }
 
-//Закрытие попапов на крестик
+//Закрытие попапов на оверлэй
 
-const popupList = document.querySelector('.popup')
+popupList.forEach(function(popup){
+    popup.addEventListener('click', closePopupByOverlay)
+})
 
-document.addEventListener('click', (evt) => {
-    if(evt.target === popupList) {
-      console.log(evt.target)
-      popupList.classList.remove('popup_opened');
+function closePopupByOverlay(evt) {
+    if(evt.target.classList.contains('popup_opened')){
+      closePopup(evt.target);
     }
-  })
+  }
+//Закрытие попапов на крестик
 
 buttonCloseList.forEach(function(button){
   button.addEventListener('click', handleCloseButton);
