@@ -1,8 +1,5 @@
 //Валидация
 
-//const formEditProfile = document.querySelector('.popup__form');
-//const formAddCard = document.querySelector('.popup-add__form')
-
 const showError = (errorText, validationMessage, errorActiveClass) => {
   errorText.textContent = validationMessage;
   errorText.classList.add(errorActiveClass);
@@ -23,11 +20,11 @@ const enableButton = (buttonSubmit, inactiveButtonClass) => {
   buttonSubmit.disabled = false;
 }
 
-
 const checkInputValidity = (input, errorTemplate, errorActiveClass) => {
   const errorText = document.querySelector(`${errorTemplate}${input.name}`)
   if (!input.validity.valid) {
     showError(errorText, input.validationMessage, errorActiveClass);
+    input.classList.add('popup__item_error');
   } else {
     hideError(errorText, errorActiveClass);
   }
@@ -85,8 +82,5 @@ enableValidation({
   submitSaveButtonSelector: '.popup__button-save',
   submitCreateButtonSelector: '.popup-add__button-create',
   inactiveSaveButtonClass: 'popup__button-save_disabled',
-  inactiveCreateButtonClass: 'popup-add__button-create_disabled',
-
-
-  //errorClass: 'popup__error_visible'
+  inactiveCreateButtonClass: 'popup-add__button-create_disabled'
 });

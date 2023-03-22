@@ -41,7 +41,7 @@ function handleAddPopup(){
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc)
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 //Закрытие попапов на оверлэй
