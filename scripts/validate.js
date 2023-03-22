@@ -20,14 +20,14 @@ const enableButton = (buttonSubmit, inactiveButtonClass) => {
   buttonSubmit.disabled = false;
 }
 
-const checkInputValidity = (input, inputErrorTemplate, errorActiveClass) => {
+const checkInputValidity = (input, inputErrorTemplate, errorActiveClass, errorPopupItemClass) => {
   const errorText = document.querySelector(`${inputErrorTemplate}${input.name}`)
   if (!input.validity.valid) {
     showError(errorText, input.validationMessage, errorActiveClass);
-    input.classList.add('popup__item_error');
+    input.classList.add(errorPopupItemClass);
   } else {
     hideError(errorText, errorActiveClass);
-    input.classList.remove('popup__item_error');
+    input.classList.remove(errorPopupItemClass);
   }
 }
 
@@ -43,7 +43,7 @@ const  toggleButtonState = (buttonSubmit, inactiveButtonClass, inputList) => {
   }
 }
 
-const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass) => {
+const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass, errorPopupItemClass) => {
   formList.addEventListener('submit', (evt) =>{
     evt.preventDefault();
   })
@@ -52,7 +52,7 @@ const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveC
 
   inputList.forEach((input) => {
     input.addEventListener('input', (e) =>{
-      checkInputValidity(input, inputErrorTemplate, errorActiveClass)
+      checkInputValidity(input, inputErrorTemplate, errorActiveClass, errorPopupItemClass)
       toggleButtonState(buttonSubmit, inactiveButtonClass, inputList);
     })
   })
@@ -63,7 +63,7 @@ const enableValidation = (config) => {
   const inputList =  document.querySelectorAll(config.inputSelector);
   const buttonSubmit = document.querySelectorAll(config.submitButtonSelector)
 
-  setEventListeners(formList, inputList, config.inputErrorTemplate, config.errorActiveClass, buttonSubmit, config.inactiveButtonClass)
+  setEventListeners(formList, inputList, config.inputErrorTemplate, config.errorActiveClass, buttonSubmit, config.inactiveButtonClass, config.errorPopupItemClass)
 
  /* const formAdd = document.querySelector(config.formAddSelector)
   const formAddList = formAdd.querySelectorAll(config.inputSelector)
@@ -82,4 +82,5 @@ enableValidation({
   //submitCreateButtonSelector: '.popup-add__button-create',
   inactiveButtonClass: 'popup__button_disabled',
   //inactiveCreateButtonClass: 'popup-add__button-create_disabled'
+  errorPopupItemClass: 'popup__item_error'
 });
