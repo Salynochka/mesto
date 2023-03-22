@@ -27,6 +27,7 @@ const checkInputValidity = (input, errorTemplate, errorActiveClass) => {
     input.classList.add('popup__item_error');
   } else {
     hideError(errorText, errorActiveClass);
+    input.classList.remove('popup__item_error');
   }
 }
 
