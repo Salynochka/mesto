@@ -42,8 +42,8 @@ const  toggleButtonState = (buttonSubmit, inactiveButtonClass, inputList) => {
   }
 }
 
-const setEventListeners = (form, inputList, errorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass) => {
-  form.addEventListener('submit', (evt) =>{
+const setEventListeners = (formList, inputList, errorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass) => {
+  formList.addEventListener('submit', (evt) =>{
     evt.preventDefault();
   })
    
@@ -58,11 +58,11 @@ const setEventListeners = (form, inputList, errorTemplate, errorActiveClass,  bu
 }
 
 const enableValidation = (config) => {
-  const form = document.querySelector(config.formSelector)
-  const formList = form.querySelectorAll(config.inputSelector)
-  const buttonSaveSubmit = form.querySelector(config.submitButtonSelector)
+  const formList = document.querySelectorAll(config.formSelector);
+  const inputList =  document.querySelectorAll(config.inputSelector);
+  const buttonSubmit = document.querySelectorAll(config.submitButtonSelector)
 
-  setEventListeners(form, formList, config.inputErrorTemplate, config.errorActiveClass, buttonSaveSubmit, config.inactiveButtonClass)
+  setEventListeners(formList, inputList, config.inputErrorTemplate, config.errorActiveClass, buttonSubmit, config.inactiveButtonClass)
 
  /* const formAdd = document.querySelector(config.formAddSelector)
   const formAddList = formAdd.querySelectorAll(config.inputSelector)
