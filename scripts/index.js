@@ -79,7 +79,6 @@ formEditProfile.addEventListener('submit', function (evt) {
 });
 
 //Создание новых карточек
-formAddCard.addEventListener('submit', handleAddCard)
 
 function handleAddCard(evt){
   evt.preventDefault()
@@ -95,6 +94,7 @@ function handleAddCard(evt){
 
   return newCard;
 }
+
 
 const cardsContainer = document.querySelector('.cards');
 
@@ -113,7 +113,7 @@ function createCard(card){
   cardPhoto.setAttribute('alt', card.name);
     
   cardDeleteButton.addEventListener('click', handleDeleteButton);
-  likeButton.addEventListener('click', handleActiveLike);
+  likeButton.addEventListener('click', toggleLike);
   cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.link, card.name));
       
   return cardTemplate;
@@ -133,7 +133,7 @@ function handleDeleteButton(event){
   card.remove();
 };
 
-function handleActiveLike(event){
+function toggleLike(event){
   const likeButton = event.target;
   likeButton.classList.toggle('card__like_active');
 };
@@ -152,3 +152,5 @@ function closePopupEsc(e) {
     closePopup(popupOpen);
   }
 }
+
+formAddCard.addEventListener('submit', handleAddCard)

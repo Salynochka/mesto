@@ -58,30 +58,27 @@ const setEventListeners = (form, inputList, errorTemplate, errorActiveClass,  bu
 }
 
 const enableValidation = (config) => {
-  const formEdit = document.querySelector(config.formEditSelector)
-  const formEditList = formEdit.querySelectorAll(config.inputSelector)
-  const buttonSaveSubmit = formEdit.querySelector(config.submitSaveButtonSelector)
+  const form = document.querySelector(config.formSelector)
+  const formList = form.querySelectorAll(config.inputSelector)
+  const buttonSaveSubmit = form.querySelector(config.submitButtonSelector)
 
-  setEventListeners(formEdit, formEditList, config.inputErrorEditTemplate, config.errorEditActiveClass, buttonSaveSubmit, config.inactiveSaveButtonClass)
+  setEventListeners(form, formList, config.inputErrorTemplate, config.errorActiveClass, buttonSaveSubmit, config.inactiveSaveButtonClass)
 
-  const formAdd = document.querySelector(config.formAddSelector)
+ /* const formAdd = document.querySelector(config.formAddSelector)
   const formAddList = formAdd.querySelectorAll(config.inputSelector)
   const buttonCreateSubmit = formAdd.querySelector(config.submitCreateButtonSelector)
   
-  setEventListeners(formAdd, formAddList, config.inputErrorAddTemplate, config.errorAddActiveClass, buttonCreateSubmit, config.inactiveCreateButtonClass)
+  setEventListeners(formAdd, formAddList, config.inputErrorAddTemplate, config.errorAddActiveClass, buttonCreateSubmit, config.inactiveCreateButtonClass)*/
 }
 
 
 enableValidation({
-  formEditSelector: '.popup__form',
-  formAddSelector: '.popup-add__form',
+  formSelector: '.popup__form',
   inputSelector: '.popup__item',
-  inputErrorEditTemplate: '.popup__form-error_type_',
-  inputErrorAddTemplate: '.popup-add__form-error_type_',
-  errorEditActiveClass: 'popup__form-error',
-  errorAddActiveClass: 'popup-add__form-error',
-  submitSaveButtonSelector: '.popup__button-save',
-  submitCreateButtonSelector: '.popup-add__button-create',
+  inputErrorTemplate: '.popup__form-error_type_',
+  errorActiveClass: 'popup__form-error',
+  submitButtonSelector: '.popup__button',
+  //submitCreateButtonSelector: '.popup-add__button-create',
   inactiveSaveButtonClass: 'popup__button-save_disabled',
   inactiveCreateButtonClass: 'popup-add__button-create_disabled'
 });
