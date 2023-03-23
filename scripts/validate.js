@@ -78,21 +78,3 @@ const enableValidation = (config) => {
 }
 
 enableValidation (variablesForValidation);
-
-//Деактивация кнопки сабмита
-/*const resetInput = (popup, config) => {
-  const form = popup.querySelector(config.formSelector);
-  const inputList = popup.querySelectorAll(config.inputSelector);
-  inputList.forEach((input) => {
-    const errorText = form.querySelector(`${input.name}-error`);
-    hideError(errorText, errorActiveClass);
-  });
-}
-
-const setDefaultButton = (popup, config) => {
-  //const form = popup.querySelector(config.formSelector);
-  const inputList = Array.from(popup.querySelectorAll(config.inputSelector));
-  //const buttonSubmit = popup.querySelector(config.submitButtonSelector);
-  toggleButtonState(config.submitButtonSelector, config.inactiveButtonClass, inputList);
-}*/
-
