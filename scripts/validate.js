@@ -1,5 +1,15 @@
 //Валидация
 
+const variablesForValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__item',
+  inputErrorTemplate: '.popup__form-error_type_',
+  errorActiveClass: 'popup__form-error',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  errorPopupItemClass: 'popup__item_error',
+};
+
 const showError = (errorText, validationMessage, errorActiveClass) => {
   errorText.textContent = validationMessage;
   errorText.classList.add(errorActiveClass);
@@ -43,8 +53,8 @@ const  toggleButtonState = (buttonSubmit, inactiveButtonClass, inputList) => {
   }
 }
 
-const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass, errorPopupItemClass) => {
-  formList.addEventListener('submit', (evt) =>{
+const setEventListeners = (form, inputList, inputErrorTemplate, errorActiveClass,  buttonSubmit, inactiveButtonClass, errorPopupItemClass) => {
+  form.addEventListener('submit', (evt) =>{
     evt.preventDefault();
   })
    
@@ -59,28 +69,30 @@ const setEventListeners = (formList, inputList, inputErrorTemplate, errorActiveC
 }
 
 const enableValidation = (config) => {
-  const formList = document.querySelectorAll(config.formSelector);
-  const inputList =  document.querySelectorAll(config.inputSelector);
-  const buttonSubmit = document.querySelectorAll(config.submitButtonSelector)
-
-  setEventListeners(formList, inputList, config.inputErrorTemplate, config.errorActiveClass, buttonSubmit, config.inactiveButtonClass, config.errorPopupItemClass)
-
- /* const formAdd = document.querySelector(config.formAddSelector)
-  const formAddList = formAdd.querySelectorAll(config.inputSelector)
-  const buttonCreateSubmit = formAdd.querySelector(config.submitCreateButtonSelector)
-  
-  setEventListeners(formAdd, formAddList, config.inputErrorAddTemplate, config.errorAddActiveClass, buttonCreateSubmit, config.inactiveCreateButtonClass)*/
+  const formList = Array.from(document.querySelectorAll(config.formSelector));
+  formList.forEach((form) => {
+    const inputList =  Array.from(form.querySelectorAll(config.inputSelector));
+    const buttonSubmit = form.querySelector(config.submitButtonSelector)
+    setEventListeners(form, inputList, config.inputErrorTemplate, config.errorActiveClass, buttonSubmit, config.inactiveButtonClass, config.errorPopupItemClass)
+  });
 }
 
+enableValidation (variablesForValidation);
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__item',
-  inputErrorTemplate: '.popup__form-error_type_',
-  errorActiveClass: 'popup__form-error',
-  submitButtonSelector: '.popup__button',
-  //submitCreateButtonSelector: '.popup-add__button-create',
-  inactiveButtonClass: 'popup__button_disabled',
-  //inactiveCreateButtonClass: 'popup-add__button-create_disabled'
-  errorPopupItemClass: 'popup__item_error'
-});
+//Деактивация кнопки сабмита
+/*const resetInput = (popup, config) => {
+  const form = popup.querySelector(config.formSelector);
+  const inputList = popup.querySelectorAll(config.inputSelector);
+  inputList.forEach((input) => {
+    const errorText = form.querySelector(`${input.name}-error`);
+    hideError(errorText, errorActiveClass);
+  });
+}
+
+const setDefaultButton = (popup, config) => {
+  //const form = popup.querySelector(config.formSelector);
+  const inputList = Array.from(popup.querySelectorAll(config.inputSelector));
+  //const buttonSubmit = popup.querySelector(config.submitButtonSelector);
+  toggleButtonState(config.submitButtonSelector, config.inactiveButtonClass, inputList);
+}*/
+

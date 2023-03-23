@@ -35,7 +35,7 @@ function handleEditPopup(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 }
-function handleAddPopup(){
+function handleAddPopup(config){
   openPopup(popupAddCard)
 };
 
@@ -80,7 +80,7 @@ formEditProfile.addEventListener('submit', function (evt) {
 
 //Создание новых карточек
 
-function handleAddCard(evt){
+function handleAddCard(evt, config){
   evt.preventDefault()
   const formAddCard = evt.target;
   const newCard = {
@@ -92,9 +92,12 @@ function handleAddCard(evt){
   closePopup(popupAddCard);
   formAddCard.reset();
 
+  const inputList =  Array.from(formAddCard.querySelectorAll('.popup__item'));
+  const buttonSubmit = formAddCard.querySelector('.popup__button')
+  toggleButtonState(buttonSubmit, variablesForValidation.inactiveButtonClass, inputList);
+
   return newCard;
 }
-
 
 const cardsContainer = document.querySelector('.cards');
 
@@ -113,7 +116,7 @@ function createCard(card){
   cardPhoto.setAttribute('alt', card.name);
     
   cardDeleteButton.addEventListener('click', handleDeleteButton);
-  likeButton.addEventListener('click', toggleLike);
+  likeButton.addEventListener('click', handleToggleLike);
   cardPhoto.addEventListener('click', () => handleIncreasePhoto(card.link, card.name));
       
   return cardTemplate;
@@ -133,7 +136,7 @@ function handleDeleteButton(event){
   card.remove();
 };
 
-function toggleLike(event){
+function handleToggleLike(event){
   const likeButton = event.target;
   likeButton.classList.toggle('card__like_active');
 };
