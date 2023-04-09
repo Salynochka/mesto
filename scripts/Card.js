@@ -29,8 +29,8 @@ const cardTemplate = document.querySelector('.card__template').content;
 const popupElement = document.querySelector('.popup');
 const buttonClose = document.querySelector('.popup__button-close');
 
-//const likeButton = cardTemplate.querySelector('.card__like');
-//const cardPhoto = cardTemplate.querySelector('.card__photo');
+const likeButton = cardTemplate.querySelector('.card__like');
+const cardPhoto = cardTemplate.querySelector('.card__photo');
 
 
 class Card {
