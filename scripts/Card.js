@@ -25,15 +25,28 @@ const initialCards = [
     }
 ]; 
 
-const cardTemplate = document.querySelector('.card__template').content;
-const popupElement = document.querySelector('.popup');
-const buttonClose = document.querySelector('.popup__button-close');
+export const cardTemplate = document.querySelector('.card__template').content;
 
-const likeButton = cardTemplate.querySelector('.card__like');
-const cardPhoto = cardTemplate.querySelector('.card__photo');
+export const cardPhoto = cardTemplate.querySelector('.card__photo');
+export const cardTitle = cardTemplate.querySelector('.card__title');
 
+const popupWithPhoto = document.querySelector('.popup-increase');
+const popupIncreasePhoto = popupWithPhoto.querySelector('.popup-increase__photo');
+const popupIncreaseHeading = popupWithPhoto.querySelector('.popup-increase__heading');
 
-class Card {
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
+}
+
+function handleIncreasePhoto(name, link){
+  popupIncreasePhoto.src = link;
+  popupIncreasePhoto.alt = name;
+  popupIncreaseHeading.textContent = name;
+  openPopup(popupWithPhoto)
+}
+
+export class Card {
     constructor(data, templateSelector, handleIncreasePhoto) {
         this._link = data.link;
         this._alt = data.name;
@@ -73,13 +86,6 @@ class Card {
       this._element.remove();
     };
 
-    _handleIncreasePhoto(name, link) {
-      this._cardPhoto.src = link;
-      this._cardPhoto.alt = name;
-      this._cardHeading.textContent = name;
-      this._cardPhoto.classList.add('popup_opened');
-    }
-
     _setEventListeners() {
       this._likeButton.addEventListener('click', () => {
         this._handleLike();
@@ -90,13 +96,13 @@ class Card {
       });
 
       this._cardPhoto.addEventListener('click', () => {
-        this._handleIncreasePhoto(this._name, this._link);
+        this.handleIncreasePhoto(this._name, this._link);
       });
 }
 }
 
 initialCards.forEach((item) => {
-    const card = new Card(item, templateSelector, handleIncreasePhoto);
+    const card = new Card(item, cardTemplate, handleIncreasePhoto);
     const cardElement = card.generateCard();
 
     document.querySelector('.cards').append(cardElement);

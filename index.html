@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="pages/index.css">
     <script type="module" src="scripts/FormValidator.js"></script>
     <script type="module" src="scripts/Card.js"></script>
-    <script src="scripts/index.js" defer></script>
+    <script type="module" src="scripts/index.js" defer></script>
     <title>Mesto</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <form class="popup__form" name="information">
+        <form class="popup__form popup-edit__form" name="information">
           <fieldset class="popup__input">
             <input type="text" class="popup__item popup__item_type_name" name="name" minlength="2" maxlength="40"required>
             <span class="popup__form-error popup__form-error_type_name name-error"></span>
