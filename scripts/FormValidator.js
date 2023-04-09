@@ -81,8 +81,3 @@ export class FormValidator {
     });
   }
 }
-
-const profileValidation = new FormValidator(variablesForValidation, '.popup-edit__form')
-profileValidation.enableValidation(variablesForValidation)
-const newCardValidation = new FormValidator(variablesForValidation, '.popup-add__form')
-newCardValidation.enableValidation(variablesForValidation)

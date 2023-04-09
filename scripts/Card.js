@@ -1,51 +1,3 @@
-const initialCards = [
-    {
-      name: 'Эверест',
-      link: 'images/everest.jpg'
-    },
-    {
-      name: 'Национальный парк Секвойа',
-      link: 'images/sequoia.jpg'
-    },
-    {
-      name: 'Красное море',
-      link: 'images/red_sea.jpg'
-    },
-    {
-      name: 'Антилопа Каньон',
-      link: 'images/antelope_canyon.jpg'
-    },
-    {
-      name: 'Озеро Брайес',
-      link: '/images/braies_lake.jpg'
-    },
-    {
-      name: 'Мачу Пикчу',
-      link: 'images/machu_picchu.jpg'
-    }
-]; 
-
-export const cardTemplate = document.querySelector('.card__template').content;
-
-export const cardPhoto = cardTemplate.querySelector('.card__photo');
-export const cardTitle = cardTemplate.querySelector('.card__title');
-
-const popupWithPhoto = document.querySelector('.popup-increase');
-const popupIncreasePhoto = popupWithPhoto.querySelector('.popup-increase__photo');
-const popupIncreaseHeading = popupWithPhoto.querySelector('.popup-increase__heading');
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupEsc);
-}
-
-function handleIncreasePhoto(name, link){
-  popupIncreasePhoto.src = link;
-  popupIncreasePhoto.alt = name;
-  popupIncreaseHeading.textContent = name;
-  openPopup(popupWithPhoto)
-}
-
 export class Card {
     constructor(data, templateSelector, handleIncreasePhoto) {
         this._link = data.link;
@@ -56,6 +8,7 @@ export class Card {
     }
     
     _getTemplate(){
+    const cardTemplate = document.querySelector('.card__template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     return cardElement
     }
@@ -100,10 +53,3 @@ export class Card {
       });
 }
 }
-
-initialCards.forEach((item) => {
-    const card = new Card(item, cardTemplate, handleIncreasePhoto);
-    const cardElement = card.generateCard();
-
-    document.querySelector('.cards').append(cardElement);
-    })

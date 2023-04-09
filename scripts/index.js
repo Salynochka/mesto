@@ -1,5 +1,5 @@
 import {FormValidator, variablesForValidation} from './FormValidator.js';
-import {Card, cardTemplate, cardPhoto, cardTitle} from './Card.js';
+import {Card} from './Card.js';
 
 const popupList = document.querySelectorAll('.popup')
 const formEditProfile = document.querySelector('.popup__form');
@@ -20,6 +20,13 @@ const buttonChangeProfile = document.querySelector('.profile__changes');
 const buttonAddNewCard = document.querySelector('.profile__button-add');
 const buttonCloseList = document.querySelectorAll('.popup__button-close');
 
+const cardTemplate = document.querySelector('.card__template').content;
+
+const popupWithPhoto = document.querySelector('.popup-increase');
+const popupIncreasePhoto = popupWithPhoto.querySelector('.popup-increase__photo');
+const popupIncreaseHeading = popupWithPhoto.querySelector('.popup-increase__heading');
+
+
 //Открытие попапов через кнопки изменения и добавления
 
 buttonChangeProfile.addEventListener('click', handleEditPopup);
@@ -34,7 +41,7 @@ function handleAddPopup(popup){
   openPopup(popupAddCard)
 };
 
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
@@ -80,8 +87,47 @@ formEditProfile.addEventListener('submit', function (evt) {
   closePopup(popupEditProfile)
 });
 
-//Создание новых карточек
+const initialCards = [
+  {
+    name: 'Эверест',
+    link: 'images/everest.jpg'
+  },
+  {
+    name: 'Национальный парк Секвойа',
+    link: 'images/sequoia.jpg'
+  },
+  {
+    name: 'Красное море',
+    link: 'images/red_sea.jpg'
+  },
+  {
+    name: 'Антилопа Каньон',
+    link: 'images/antelope_canyon.jpg'
+  },
+  {
+    name: 'Озеро Брайес',
+    link: '/images/braies_lake.jpg'
+  },
+  {
+    name: 'Мачу Пикчу',
+    link: 'images/machu_picchu.jpg'
+  }
+]; 
 
+export function handleIncreasePhoto(name, link){
+  popupIncreasePhoto.src = link;
+  popupIncreasePhoto.alt = name;
+  popupIncreaseHeading.textContent = name;
+  openPopup(popupWithPhoto)
+}
+
+initialCards.forEach((item) => {
+  const card = new Card(item, cardTemplate, handleIncreasePhoto);
+  const cardElement = card.generateCard();
+  document.querySelector('.cards').append(cardElement);
+  })
+
+//Создание новых карточек
 const validation = new FormValidator(variablesForValidation)
 
 function handleAddCard(evt, variablesForValidation){
@@ -93,8 +139,9 @@ function handleAddCard(evt, variablesForValidation){
     link: linkInput.value
   }
   renderCard(newCard);
-  closePopup(popupAddCard);
+  
   formAddCard.reset();
+  closePopup(popupAddCard);
 
   const inputList =  Array.from(formAddCard.querySelectorAll('.popup__item'));
   const buttonSubmit = formAddCard.querySelector('.popup__button');
@@ -114,9 +161,12 @@ const cardsContainer = document.querySelector('.cards');
 formAddCard.addEventListener('submit', handleAddCard)
 
 function createCard(card){
-  cardTitle.textContent = card.name;
-  cardPhoto.setAttribute('src', card.link);
-  cardPhoto.setAttribute('alt', card.name);
-      
-  return cardTemplate;
+  const newCard = new Card(card, cardTemplate, handleIncreasePhoto);
+  return newCard.generateCard();
 }
+
+const profileValidation = new FormValidator(variablesForValidation, '.popup-edit__form')
+profileValidation.enableValidation(variablesForValidation)
+
+const newCardValidation = new FormValidator(variablesForValidation, '.popup-add__form')
+newCardValidation.enableValidation(variablesForValidation)
