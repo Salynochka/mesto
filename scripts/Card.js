@@ -1,3 +1,4 @@
+import {cardTemplate} from './index.js'
 export class Card {
     constructor(data, templateSelector, handleIncreasePhoto) {
         this._link = data.link;
@@ -8,7 +9,6 @@ export class Card {
     }
     
     _getTemplate(){
-    const cardTemplate = document.querySelector('.card__template').content;
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
     return cardElement
     }

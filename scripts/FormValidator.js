@@ -12,6 +12,9 @@ export const variablesForValidation = {
 export class FormValidator {
   constructor(variablesForValidation){
     this._variablesForValidation = variablesForValidation;
+    this._form = document.querySelector(this._variablesForValidation.formSelector);
+    this._inputList =  Array.from(this._form.querySelectorAll(this._variablesForValidation.inputSelector));
+    this._buttonSubmit = this._form.querySelector(this._variablesForValidation.submitButtonSelector)
   }
 
   _showError (errorText, validationMessage, variablesForValidation) {
@@ -57,6 +60,17 @@ export class FormValidator {
     }
   }
   
+  resetValidation(buttonSubmit, inputList, variablesForValidation) {
+    this.toggleButtonState(buttonSubmit, inputList, variablesForValidation);
+
+    this._inputList.forEach((input) => {
+      const errorText = document.querySelector(`${this._variablesForValidation.inputErrorTemplate}${input.name}`)
+      this._hideError(errorText, variablesForValidation);
+      input.classList.remove(this._variablesForValidation.errorPopupItemClass);
+    });
+
+  }
+  
   _setEventListeners (form, inputList, buttonSubmit, variablesForValidation) {
     form.addEventListener('submit', (evt) =>{
       evt.preventDefault();
@@ -73,11 +87,6 @@ export class FormValidator {
   }
   
   enableValidation (variablesForValidation) {
-    const formList = Array.from(document.querySelectorAll(this._variablesForValidation.formSelector));
-    formList.forEach((form) => {
-      const inputList =  Array.from(form.querySelectorAll(this._variablesForValidation.inputSelector));
-      const buttonSubmit = form.querySelector(this._variablesForValidation.submitButtonSelector)
-      this._setEventListeners(form, inputList, buttonSubmit, variablesForValidation)
-    });
+      this._setEventListeners(this._form, this._inputList, this._buttonSubmit, variablesForValidation)
   }
 }
