@@ -10,6 +10,7 @@ const jobInput = document.querySelector('.popup__item_type_job');
 const profileName = document.querySelector('.profile__name');
 const profileDescription = document.querySelector('.profile__description');
 
+const cards = document.querySelector('.cards');
 const nameCardInput = document.querySelector('.popup__item_type_name-card');
 const linkInput = document.querySelector('.popup__item_type_link');
 
@@ -30,6 +31,12 @@ const inputList =  Array.from(formAddCard.querySelectorAll('.popup__item'));
 const buttonSubmit = formAddCard.querySelector('.popup__button');
 const buttonDisabled = formAddCard.querySelector('popup__button_disabled');
 
+const profileValidation = new FormValidator(variablesForValidation, '.popup-edit__form')
+profileValidation.enableValidation(variablesForValidation)
+
+const newCardValidation = new FormValidator(variablesForValidation, '.popup-add__form')
+newCardValidation.enableValidation(variablesForValidation)
+
 //Открытие попапов через кнопки изменения и добавления
 
 buttonChangeProfile.addEventListener('click', handleEditPopup);
@@ -40,7 +47,7 @@ function handleEditPopup(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileDescription.textContent;
 
-  newCardValidation.resetValidation(buttonSubmit, inputList, variablesForValidation)
+  profileValidation.resetValidation(buttonSubmit, variablesForValidation)
 }
 function handleAddPopup(popup){
   openPopup(popupAddCard)
@@ -128,7 +135,7 @@ export function handleIncreasePhoto(name, link){
 
 initialCards.forEach((item) => {
   const cardElement = createCard(item);
-  document.querySelector('.cards').append(cardElement);
+  cards.append(cardElement);
   })
 
 //Создание новых карточек
@@ -145,9 +152,7 @@ function handleAddCard(evt){
   
   formAddCard.reset();
   closePopup(popupAddCard);
-
-  newCardValidation.resetValidation(buttonSubmit, inputList);
-
+  newCardValidation.toggleButtonState(buttonSubmit, variablesForValidation);
   return newCard;
 }
 
@@ -164,9 +169,3 @@ function createCard(card){
   const newCard = new Card(card, cardTemplate, handleIncreasePhoto);
   return newCard.generateCard();
 }
-
-const profileValidation = new FormValidator(variablesForValidation, '.popup-edit__form')
-profileValidation.enableValidation(variablesForValidation)
-
-const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
-newCardValidation.enableValidation(variablesForValidation)
