@@ -10,82 +10,82 @@ export const variablesForValidation = {
 };
 
 export class FormValidator {
-  constructor(variablesForValidation){
+  constructor(variablesForValidation, form){
     this._variablesForValidation = variablesForValidation;
-    this._form = document.querySelector(this._variablesForValidation.formSelector);
-    this._inputList =  Array.from(document.querySelectorAll(this._variablesForValidation.inputSelector));
-    this._buttonSubmit = document.querySelector(this._variablesForValidation.submitButtonSelector)
+    this._form = form;
+    this._inputList =  Array.from(this._form.querySelectorAll(this._variablesForValidation.inputSelector));
+    this._buttonSubmit = this._form.querySelector(this._variablesForValidation.submitButtonSelector)
   }
 
-  _showError (errorText, validationMessage, variablesForValidation) {
+  _showError (errorText, validationMessage) {
     errorText.textContent = validationMessage;
     errorText.classList.add(this._variablesForValidation.errorActiveClass);
   }
   
-  _hideError(errorText, variablesForValidation) {
+  _hideError(errorText) {
     errorText.classList.remove(this._variablesForValidation.errorActiveClass);
     errorText.textContent = ''
   }
   
-  _disableButton(buttonSubmit, variablesForValidation) {
+  _disableButton(buttonSubmit) {
     buttonSubmit.classList.add(this._variablesForValidation.inactiveButtonClass);
     buttonSubmit.disabled = true;
   }
   
-  _enableButton(buttonSubmit, variablesForValidation) {
+  _enableButton(buttonSubmit) {
     buttonSubmit.classList.remove(this._variablesForValidation.inactiveButtonClass);
     buttonSubmit.disabled = false;
   }
   
-  _checkInputValidity (input, variablesForValidation) {
-    const errorText = document.querySelector(`${this._variablesForValidation.inputErrorTemplate}${input.name}`)
+  _checkInputValidity (input) {
+    const errorText = this._form.querySelector(`${this._variablesForValidation.inputErrorTemplate}${input.name}`)
     if (!input.validity.valid) {
-      this._showError(errorText, input.validationMessage, variablesForValidation);
+      this._showError(errorText, input.validationMessage);
       input.classList.add(this._variablesForValidation.errorPopupItemClass);
     } else {
-      this._hideError(errorText, variablesForValidation);
+      this._hideError(errorText);
       input.classList.remove(this._variablesForValidation.errorPopupItemClass);
     }
   }
   
-  _hasInvalidInput(variablesForValidation) {
+  _hasInvalidInput() {
     return Array.from(this._inputList).some((input) => !input.validity.valid);
   }
   
-  toggleButtonState(buttonSubmit, variablesForValidation) {
+  toggleButtonState() {
     if (!this._hasInvalidInput(this._inputList)){
-      this._enableButton(buttonSubmit, variablesForValidation)
+      this._enableButton(this._buttonSubmit)
     } else {
-      this._disableButton(buttonSubmit, variablesForValidation)
+      this._disableButton(this._buttonSubmit)
     }
   }
   
-  resetValidation(buttonSubmit, variablesForValidation) {
-    this.toggleButtonState(buttonSubmit, variablesForValidation);
+  resetValidation() {
+    this.toggleButtonState();
 
     this._inputList.forEach((input) => {
-      const errorText = document.querySelector(`${this._variablesForValidation.inputErrorTemplate}${input.name}`)
-      this._hideError(errorText, variablesForValidation);
+      const errorText = this._form.querySelector(`${this._variablesForValidation.inputErrorTemplate}${input.name}`)
+      this._hideError(errorText);
       input.classList.remove(this._variablesForValidation.errorPopupItemClass);
     });
   }
   
-  _setEventListeners (form, inputList, buttonSubmit, variablesForValidation) {
-    form.addEventListener('submit', (evt) =>{
+  _setEventListeners () {
+    this._form.addEventListener('submit', (evt) =>{
       evt.preventDefault();
     })
   
-    inputList.forEach((input) => {
+    this._inputList.forEach((input) => {
       input.addEventListener('input', () =>{
         this._checkInputValidity(input)
-        this.toggleButtonState(buttonSubmit, variablesForValidation);
+        this.toggleButtonState();
       })
     })
     
-    this.toggleButtonState(buttonSubmit, variablesForValidation)
+    this.toggleButtonState()
   }
   
-  enableValidation (variablesForValidation) {
-      this._setEventListeners(this._form, this._inputList, this._buttonSubmit, variablesForValidation)
+  enableValidation () {
+      this._setEventListeners()  
   }
 }

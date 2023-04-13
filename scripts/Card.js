@@ -1,16 +1,16 @@
-import {cardTemplate} from './index.js'
 export class Card {
-    constructor(data, templateSelector, handleIncreasePhoto) {
+    constructor(data, cardTemplate, handleIncreasePhoto) {
         this._link = data.link;
         this._alt = data.name;
         this._name = data.name;
-        this.templateSelector = templateSelector;
+        this._cardTemplate = cardTemplate;
         this.handleIncreasePhoto = handleIncreasePhoto;
     }
     
     _getTemplate(){
-    const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-    return cardElement
+      const cardElement = this._cardTemplate.querySelector('.card').cloneNode(true);
+
+      return cardElement
     }
 
     generateCard() {
