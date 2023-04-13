@@ -74,6 +74,8 @@ export class FormValidator {
     this._form.addEventListener('submit', (evt) =>{
       evt.preventDefault();
     })
+    
+    this.toggleButtonState()
   
     this._inputList.forEach((input) => {
       input.addEventListener('input', () =>{
@@ -81,8 +83,6 @@ export class FormValidator {
         this.toggleButtonState();
       })
     })
-    
-    this.toggleButtonState()
   }
   
   enableValidation () {
