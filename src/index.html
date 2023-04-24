@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="Ru">
   <head>
-    <link rel="stylesheet" href="pages/index.css">
-    <script type="module" src="scripts/FormValidator.js"></script>
-    <script type="module" src="scripts/index.js" defer></script>
-    <script type="module" src="scripts/Card.js"></script>
     <title>Mesto</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +13,7 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__photo" src="images/photo.jpg" alt="Фото Жак-Ив Кусто">
+      <img class="profile__photo" src="<%=require('./images/photo.jpg')%>" alt="Фото Жак-Ив Кусто">
       <div class="profile__info">
         <div class="profile__entry">
           <h1 class="profile__name">Жак-Ив Кусто</h1>

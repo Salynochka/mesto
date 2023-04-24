@@ -49,7 +49,7 @@ export class Card {
       });
 
       this._cardPhoto.addEventListener('click', () => {
-        this.handleIncreasePhoto(this._name, this._link);
+        this.handleIncreasePhoto();
       });
 }
 }

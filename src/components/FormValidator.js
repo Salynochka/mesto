@@ -1,14 +1,4 @@
 //Валидация
-export const variablesForValidation = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__item',
-  inputErrorTemplate: '.popup__form-error_type_',
-  errorActiveClass: 'popup__form-error',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  errorPopupItemClass: 'popup__item_error',
-};
-
 export class FormValidator {
   constructor(variablesForValidation, form){
     this._variablesForValidation = variablesForValidation;
