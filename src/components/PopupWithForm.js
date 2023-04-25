@@ -1,5 +1,5 @@
 import {Popup} from './Popup.js';
-import {profileValidation} from '../index.js';
+import {profileValidation} from '../pages/index.js';
 
 export class PopupWithForm extends Popup{
     constructor({popup, submitForm}){
@@ -12,9 +12,9 @@ export class PopupWithForm extends Popup{
     _getInputValues(){
       const formValues = {};
       this._inputList.forEach(input => {
-        //const value = input.value;
-       // const name = input.name
-        formValues[input.name] = input.value;
+        const value = input.value;
+        const name = input.name
+        formValues[name] = value;
       })
       return formValues;
     }

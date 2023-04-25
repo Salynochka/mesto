@@ -1,45 +1,41 @@
 import './index.css';
-import {FormValidator} from './components/FormValidator.js';
-import {Card} from './components/Card.js';
-import {Popup} from './components/Popup.js';
-import {PopupWithImage} from './components/PopupWithImage.js';
-import {PopupWithForm} from './components/PopupWithForm.js';
-import {Section} from './components/Section.js';
-import {UserInfo} from './components/UserInfo.js';
-import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from './utils/Constants.js';
+import {FormValidator} from '../components/FormValidator.js';
+import {Card} from '../components/Card.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {Section} from '../components/Section.js';
+import {UserInfo} from '../components/UserInfo.js';
+import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from '../utils/Constants.js';
 
 export const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
 const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
 profileValidation.enableValidation()
 newCardValidation.enableValidation()
 
-const editPopup = new Popup(popupEditProfile)
-editPopup.setEventListeners()
-const addPopup = new Popup(popupAddCard)
-addPopup.setEventListeners()
-
 buttonChangeProfile.addEventListener('click', () => {
   const currentProfileInfo = profileInfo.getUserInfo();
   nameInput.value = currentProfileInfo.profileName;
   jobInput.value = currentProfileInfo.profileDescription;
-  editPopup.open()
+  profilePopup.open()
 })
  
 buttonAddNewCard.addEventListener('click', () => {
-  addPopup.open()
   newCardValidation.toggleButtonState();
+  newCardPopup.open()
 }) 
 
 const increasePopup = new PopupWithImage(popupWithPhoto)
 increasePopup.setEventListeners();
 
+const createCard = (item) => {
+  const card = new Card(item, cardTemplate, () => increasePopup.open(item))
+  return card.generateCard()
+}
 
 const cardSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item, cardTemplate, () => increasePopup.open(item))
-    const cardElement = card.generateCard()
-    cardSection.addItem(cardElement)
+    cardSection.addItem(createCard(item))
   }
 }, '.cards' )
 
@@ -55,9 +51,9 @@ const profilePopup = new PopupWithForm({
 const newCardPopup = new PopupWithForm({
   popup: popupAddCard, 
   submitForm: (item) => {
-    const card = new Card(item, cardTemplate, () => increasePopup.open(item))
-    const cardElement = card.generateCard()
-    cardSection.addItem(cardElement);
+    cardSection.addItem(createCard(item));
+
+    formAddCard.reset();
   }
 })
 
