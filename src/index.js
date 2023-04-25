@@ -8,7 +8,7 @@ import {Section} from './components/Section.js';
 import {UserInfo} from './components/UserInfo.js';
 import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from './utils/Constants.js';
 
-const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
+export const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
 const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
 profileValidation.enableValidation()
 newCardValidation.enableValidation()
@@ -57,13 +57,12 @@ const newCardPopup = new PopupWithForm({
   submitForm: (item) => {
     const card = new Card(item, cardTemplate, () => increasePopup.open(item))
     const cardElement = card.generateCard()
-    cardSection.addItem(cardElement)
+    cardSection.addItem(cardElement);
   }
 })
 
 profilePopup.setEventListeners();
 newCardPopup.setEventListeners();
-
 
 const profileInfo = new UserInfo({
   name: profileName, 

@@ -1,20 +1,20 @@
 import {Popup} from './Popup.js';
-//import {FormValidator} from './FormValidator.js';
+import {profileValidation} from '../index.js';
 
 export class PopupWithForm extends Popup{
     constructor({popup, submitForm}){
       super(popup);
       this._submitForm = submitForm;
       this._form = this._popup.querySelector('.popup__form')
-      this._inputList = this._popup.querySelectorAll('.popup__item');
+      this._inputList = this._form.querySelectorAll('.popup__item');
     }
   
     _getInputValues(){
       const formValues = {};
       this._inputList.forEach(input => {
-        const value = input.value;
-        const name = input.name
-        formValues[name] = value;
+        //const value = input.value;
+       // const name = input.name
+        formValues[input.name] = input.value;
       })
       return formValues;
     }
