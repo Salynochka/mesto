@@ -5,7 +5,7 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {Section} from '../components/Section.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from '../utils/Constants.js';
+import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from '../utils/constants.js';
 
 export const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
 const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
@@ -21,7 +21,8 @@ buttonChangeProfile.addEventListener('click', () => {
  
 buttonAddNewCard.addEventListener('click', () => {
   newCardValidation.toggleButtonState();
-  newCardPopup.open()
+  newCardPopup.open();
+  newCardValidation.resetValidation();
 }) 
 
 const increasePopup = new PopupWithImage(popupWithPhoto)
