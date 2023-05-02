@@ -5,12 +5,14 @@ import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {Section} from '../components/Section.js';
 import {UserInfo} from '../components/UserInfo.js';
-import {initialCards, variablesForValidation, formEditProfile, formAddCard, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto} from '../utils/constants.js';
+import {initialCards, variablesForValidation, formEditProfile, formAddCard, formUpdateProfile, nameInput, jobInput, profileName, profileDescription, popupEditProfile, popupAddCard, popupUpdateProfile, buttonChangeProfile, buttonAddNewCard, cardTemplate, popupWithPhoto, profilePhoto} from '../utils/constants.js';
 
 export const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
 const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
+const updateProfileValidation = new FormValidator(variablesForValidation, formUpdateProfile)
 profileValidation.enableValidation()
 newCardValidation.enableValidation()
+updateProfileValidation.enableValidation()
 
 buttonChangeProfile.addEventListener('click', () => {
   const currentProfileInfo = profileInfo.getUserInfo();
@@ -23,7 +25,13 @@ buttonAddNewCard.addEventListener('click', () => {
   newCardValidation.toggleButtonState();
   newCardPopup.open();
   newCardValidation.resetValidation();
-}) 
+})
+
+profilePhoto.addEventListener('click', () => {
+  updateProfileValidation.toggleButtonState();
+  updateProfilePopup.open();
+  updateProfileValidation.resetValidation();
+})
 
 const increasePopup = new PopupWithImage(popupWithPhoto)
 increasePopup.setEventListeners();
@@ -58,8 +66,16 @@ const newCardPopup = new PopupWithForm({
   }
 })
 
+const updateProfilePopup = new PopupWithForm({
+  popup: popupUpdateProfile, 
+  submitForm: () => {
+    updateProfileInput.value = profilePhoto;
+  }
+})
+
 profilePopup.setEventListeners();
 newCardPopup.setEventListeners();
+updateProfilePopup.setEventListeners();
 
 const profileInfo = new UserInfo({
   name: profileName, 

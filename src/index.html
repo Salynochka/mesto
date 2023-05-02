@@ -13,7 +13,9 @@
   </header>
   <main>
     <section class="profile">
-      <img class="profile__photo" src="<%=require('./images/photo.jpg')%>" alt="Фото Жак-Ив Кусто">
+      <div class="profile__cover">
+        <img class="profile__photo" src="<%=require('./images/photo.jpg')%>" alt="Фото Жак-Ив Кусто">
+      </div>
       <div class="profile__info">
         <div class="profile__entry">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -31,12 +33,30 @@
             <img class="card__photo">
             <div class="card__subscribe">
               <h2 class="card__title"></h2>
-              <button class="card__like" type="button"></button>
+              <div class="card__like-section">
+                <button class="card__like" type="button"></button>
+                <h3 class="card__like-counter"></h3>
+              </div>
             </div>
           </div>
         </article>
       </template>
     </section>
+
+    <section class="popup popup-update">
+      <div class="popup__container popup-update__container">
+        <button class="popup__button-close" type="button"></button>
+        <h2 class="popup__heading">Обновить аватар</h2>
+        <form class="popup__form popup-update__form" name="information-update">
+          <fieldset class="popup__input">
+            <input type="url" class="popup__item popup__item_type_link" name="link" minlength="2" maxlength="40" required>
+            <span class="popup__form-error popup__form-error_type_link link-error"></span>
+          </fieldset>
+          <button class="popup__button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
     <section class="popup popup-edit">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>

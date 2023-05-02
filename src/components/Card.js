@@ -20,7 +20,7 @@ export class Card {
         this._cardPhoto.src =  this._link;
         this._cardPhoto.alt =  this._name;
 
-        this._cardHeading = this._element.querySelector('.card__title')
+        this._cardHeading = this._element.querySelector('.card__title');
         this._cardHeading.textContent = this._name;
         
         this._likeButton = this._element.querySelector('.card__like');
