@@ -15,7 +15,7 @@ import AntelopeKanyon from '../images/antelope_canyon.jpg';
 import Brayes from '../images/braies_lake.jpg';
 import MachuPikchu from '../images/machu_picchu.jpg';
 
-export const initialCards = [
+/*export const initialCards = [
     {
       name: 'Эверест',
       link: Everest
@@ -40,7 +40,7 @@ export const initialCards = [
       name: 'Мачу Пикчу',
       link: MachuPikchu
     }
-]; 
+];*/ 
 
 export const formEditProfile = document.querySelector('.popup-edit__form');
 export const formAddCard = document.querySelector('.popup-add__form');
@@ -52,10 +52,12 @@ export const updateProfileInput = document.querySelector('.popup__form-error_typ
 
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
+export const profilePhoto = document.querySelector('.profile__photo')
 
 export const popupEditProfile = document.querySelector('.popup-edit');
 export const popupAddCard = document.querySelector('.popup-add');
 export const popupUpdateProfile = document.querySelector('.popup-update');
+export const popupConfirmation = document.querySelector('.popup-confirmation')
 
 export const buttonChangeProfile = document.querySelector('.profile__changes');
 export const buttonAddNewCard = document.querySelector('.profile__button-add');
@@ -63,5 +65,3 @@ export const buttonAddNewCard = document.querySelector('.profile__button-add');
 export const cardTemplate = document.querySelector('.card__template').content;
 
 export const popupWithPhoto = document.querySelector('.popup-increase');
-
-export const profilePhoto = document.querySelector('.profile__photo');
