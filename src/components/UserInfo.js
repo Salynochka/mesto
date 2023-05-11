@@ -14,16 +14,10 @@ export class UserInfo {
     }
   
     setUserInfo(data){
-      //if(data.name){
         this._name.textContent = data.name;
-      //}
-      //if(data.job){
         this._description.textContent = data.job;
-      //}
-      //if(data.link){
         this._avatar.src = data.link;
         this._avatar.alt = data.name;
-      //}
     }
   }
   

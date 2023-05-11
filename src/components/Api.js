@@ -2,6 +2,8 @@ export class Api {
     constructor({mainUrl, headers}){
       this._mainUrl = mainUrl;
       this._headers = headers;
+      console.log(mainUrl)
+      console.log(headers)
     }
 
     //Получение карточек с сервера
