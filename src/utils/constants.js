@@ -8,40 +8,6 @@ export const variablesForValidation = {
     errorPopupItemClass: 'popup__item_error',
   };
 
-import Everest from '../images/everest.jpg';
-import Sequoia from '../images/sequoia.jpg';
-import RedSea from '../images/red_sea.jpg';
-import AntelopeKanyon from '../images/antelope_canyon.jpg';
-import Brayes from '../images/braies_lake.jpg';
-import MachuPikchu from '../images/machu_picchu.jpg';
-
-/*export const initialCards = [
-    {
-      name: 'Эверест',
-      link: Everest
-    },
-    {
-      name: 'Национальный парк Секвойа',
-      link: Sequoia
-    },
-    {
-      name: 'Красное море',
-      link: RedSea
-    },
-    {
-      name: 'Антилопа Каньон',
-      link: AntelopeKanyon
-    },
-    {
-      name: 'Озеро Брайес',
-      link: Brayes
-    },
-    {
-      name: 'Мачу Пикчу',
-      link: MachuPikchu
-    }
-];*/ 
-
 export const formEditProfile = document.querySelector('.popup-edit__form');
 export const formAddCard = document.querySelector('.popup-add__form');
 export const formUpdateProfile = document.querySelector('.popup-update__form')
@@ -53,6 +19,7 @@ export const updateProfileInput = document.querySelector('.popup__form-error_typ
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
 export const profilePhoto = document.querySelector('.profile__photo')
+export const profileCover = document.querySelector('.profile__cover')
 
 export const popupEditProfile = document.querySelector('.popup-edit');
 export const popupAddCard = document.querySelector('.popup-add');

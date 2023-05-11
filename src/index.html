@@ -13,8 +13,9 @@
   </header>
   <main>
     <section class="profile">
-      <div class="profile__cover">
+      <div class="profile__container">
         <img class="profile__photo" src="<%=require('./images/photo.jpg')%>" alt="Фото Жак-Ив Кусто">
+        <div class="profile__cover"><img class="profile__pencil" src="<%=require('./images/pencil.svg')%>" alt="Карандаш"></div>
       </div>
       <div class="profile__info">
         <div class="profile__entry">
@@ -25,6 +26,7 @@
       </div>
       <button class="profile__button-add" type="button"></button>
     </section>
+
     <section class="cards">
       <template class="card__template">
         <article class="card">
@@ -35,7 +37,7 @@
               <h2 class="card__title"></h2>
               <div class="card__like-section">
                 <button class="card__like" type="button"></button>
-                <h3 class="card__like-counter"></h3>
+                <span class="card__like-counter"></span>
               </div>
             </div>
           </div>

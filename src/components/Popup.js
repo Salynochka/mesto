@@ -18,6 +18,10 @@ export class Popup {
       this.close()
       }
     }
+
+    handleSubmit(submit) {
+      this._handleSubmit = submit;
+    }
   
     setEventListeners(){
       this._popup.addEventListener('click', (evt)=>{
