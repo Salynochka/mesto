@@ -1,5 +1,3 @@
-//import {confirmationPopup} from '../pages/index.js';
-//import {popupConfirmation} from '../utils/constants.js';
 export class Card {
     constructor({data, cardTemplate, handleCardClick, userId, handleDeleteClick, like, dislike}) {
         this._link = data.link;

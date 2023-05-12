@@ -30,10 +30,6 @@ export class PopupWithForm extends Popup{
           this.close();
       })
     }
-  
-    /*handleStatusButton(){
-
-    }*/
 
     close(){
       super.close()
