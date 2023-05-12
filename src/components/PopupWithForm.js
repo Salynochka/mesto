@@ -31,6 +31,10 @@ export class PopupWithForm extends Popup{
       })
     }
   
+    /*handleStatusButton(){
+
+    }*/
+
     close(){
       super.close()
       profileValidation.resetValidation()

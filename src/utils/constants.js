@@ -13,8 +13,9 @@ export const formAddCard = document.querySelector('.popup-add__form');
 export const formUpdateProfile = document.querySelector('.popup-update__form')
 
 export const nameInput = document.querySelector('.popup__item_type_name');
-export const jobInput = document.querySelector('.popup__item_type_job');
-export const updateProfileInput = document.querySelector('.popup__form-error_type_link');
+export const jobInput = document.querySelector('.popup__item_type_about');
+export const avatarInput = document.querySelector('.popup__item_type_avatar');
+//export const updateProfileInput = document.querySelector('.popup__form-error_type_link');
 
 export const profileName = document.querySelector('.profile__name');
 export const profileDescription = document.querySelector('.profile__description');
@@ -28,6 +29,7 @@ export const popupConfirmation = document.querySelector('.popup-confirmation')
 
 export const buttonChangeProfile = document.querySelector('.profile__changes');
 export const buttonAddNewCard = document.querySelector('.profile__button-add');
+export const buttonSubmit = document.querySelector('.popup__button');
 
 export const cardTemplate = document.querySelector('.card__template').content;
 

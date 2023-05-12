@@ -19,10 +19,10 @@
       </div>
       <div class="profile__info">
         <div class="profile__entry">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name">Данные отсутствуют</h1>
           <button class="profile__changes" type="button"></button>
         </div>
-        <h2 class="profile__description">Исследователь океана</h2>
+        <h2 class="profile__description">Данные отсутствуют</h2>
       </div>
       <button class="profile__button-add" type="button"></button>
     </section>
@@ -51,8 +51,8 @@
         <h2 class="popup__heading">Обновить аватар</h2>
         <form class="popup__form popup-update__form" name="information-update">
           <fieldset class="popup__input">
-            <input type="url" class="popup__item popup__item_type_link" name="link" minlength="2" maxlength="40" required>
-            <span class="popup__form-error popup__form-error_type_link link-error"></span>
+            <input type="url" class="popup__item popup__item_type_avatar" name="avatar" required>
+            <span class="popup__form-error popup__form-error_type_avatar avatar-error"></span>
           </fieldset>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
@@ -67,8 +67,8 @@
           <fieldset class="popup__input">
             <input type="text" class="popup__item popup__item_type_name" name="name" minlength="2" maxlength="40"required>
             <span class="popup__form-error popup__form-error_type_name name-error"></span>
-            <input type="text" class="popup__item popup__item_type_job" name="job" minlength="2" maxlength="200" required>
-            <span class="popup__form-error popup__form-error_type_job job-error"></span>
+            <input type="text" class="popup__item popup__item_type_about" name="about" minlength="2" maxlength="200" required>
+            <span class="popup__form-error popup__form-error_type_about about-error"></span>
           </fieldset>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
@@ -94,7 +94,9 @@
       <div class="popup__container popup-confirmation__container">
         <button class="popup__button-close" type="button"></button>
         <h2 class="popup-confirmation__heading">Вы уверены?</h2>
-        <button class="popup__button" type="submit">Да</button>
+        <form class="popup__form">
+          <button class="popup__button" type="submit">Да</button>
+        </form>
       </div>
     </section>
 
