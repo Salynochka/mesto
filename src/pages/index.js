@@ -1,7 +1,6 @@
 import './index.css';
 import {FormValidator} from '../components/FormValidator.js';
 import {Card} from '../components/Card.js';
-//import {Popup} from '../components/Popup.js';
 import {PopupWithImage} from '../components/PopupWithImage.js';
 import {PopupWithForm} from '../components/PopupWithForm.js';
 import {PopupWithConfirmation} from '../components/PopupWithConfirmation.js';
@@ -55,6 +54,7 @@ import {variablesForValidation,
           card.addLike()
           card.setLikes(res)
         })
+        .catch((err) => console.error(`Ошибка: ${err}`))
       },
       dislike: () => {
         api.deleteLike(item._id)
@@ -62,6 +62,7 @@ import {variablesForValidation,
           card.removeLike()
           card.setLikes(res)
         })
+        .catch((err) => console.error(`Ошибка: ${err}`))
       }
     })
     return card.generateCard()
@@ -74,7 +75,7 @@ import {variablesForValidation,
   }, '.cards' )
   
   // Экземпляры классов валидации всех модальных окон
-  export const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
+  const profileValidation = new FormValidator(variablesForValidation, formEditProfile)
   const newCardValidation = new FormValidator(variablesForValidation, formAddCard)
   const updateProfileValidation = new FormValidator(variablesForValidation, formUpdateProfile)
   profileValidation.enableValidation()
@@ -91,75 +92,67 @@ import {variablesForValidation,
   //Редактирование профиля
   const handleProfileSubmit = (data) => {
     const {name, about} = data
-    buttonSubmit.textContent = "Сохранение..."
-    api.editProfile({name, about})
+    return api.editProfile({name, about})
       .then((res) => {
         profileInfo.setUserInfo(res)
       })
-      .catch((err) => console.error(`Ошибка: ${err}`))
-      .finally(()=> buttonSubmit.textContent = "Сохранить")
-    profilePopup.close()
+     .catch((err) => console.error(`Ошибка: ${err}`))
   }
   
   //Изменение аватара
   const handleAvatarSubmit = (data) => {
     const {avatar} = data
-    buttonSubmit.textContent = "Сохранение..."
-    api.editAvatarPhoto({avatar})
+    return api.editAvatarPhoto({avatar})
       .then((res) => {
         profileInfo.setUserInfo(res)
       })
       .catch((err) => console.error(`Ошибка: ${err}`))
-      .finally(()=> buttonSubmit.textContent = "Сохранить")
-    profilePopup.close()
   }
   
   //Подтверждение удаления карточки
   const handleConfirmationSubmit = (card) => {
-    buttonSubmit.textContent = "Удаление..."
-    api.removeCard(card._id)
+    return api.removeCard(card._id)
       .then(() => {    
         card.deleteCard()
+        confirmationPopup.close()
       })
-    .catch((err) => console.error(`Ошибка: ${err}`))
-    .finally(()=> buttonSubmit.textContent = "Да")
-    confirmationPopup.close()
+      .catch((err) => console.error(`Ошибка: ${err}`))
   }
 
   //Добавление карточки
   const handleCardSubmit = (data) => {
-    buttonSubmit.textContent = "Сохранение..."
-    api.createNewCard(data)
+    return api.createNewCard(data)
       .then((res)=> {
         const card = createCard(res)
         cardSection.addItem(card)
       })
       .catch((err) => console.error(`Ошибка: ${err}`))
-      .finally(()=> buttonSubmit.textContent = "Сохранить")
-    
-    newCardPopup.close();
-    formAddCard.reset();
   }
-  
+
   // Создание экземпляра классов модальных окон
   // редактирования профиля и добавления карточки
   const profilePopup = new PopupWithForm({
     popup: popupEditProfile, 
-    submitForm: handleProfileSubmit 
+    submitForm: handleProfileSubmit,
+    validation: profileValidation,
+    submitButton: buttonSubmit
   })
   
   profilePopup.setEventListeners();
   
   const newCardPopup = new PopupWithForm({
     popup: popupAddCard, 
-    submitForm: handleCardSubmit
+    submitForm: handleCardSubmit,
+    validation: newCardValidation,
+    submitButton: buttonSubmit
   })
-  
   newCardPopup.setEventListeners();
   
   const updateProfilePopup = new PopupWithForm({
     popup: popupUpdateProfile, 
-    submitForm: handleAvatarSubmit
+    submitForm: handleAvatarSubmit,
+    validation: updateProfileValidation,
+    submitButton: buttonSubmit
   })
   
   updateProfilePopup.setEventListeners();
@@ -179,8 +172,6 @@ import {variablesForValidation,
   })
   
   profileCover.addEventListener('click', () => {
-    const currentProfileInfo = profileInfo.getUserInfo();
-    avatarInput.value = currentProfileInfo.profilePhoto;
     updateProfileValidation.toggleButtonState();
     updateProfilePopup.open();
     updateProfileValidation.resetValidation();
